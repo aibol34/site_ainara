@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+<meta property="og:title" content="Тойға шақыру – Мақсут & Айнара" />
+<meta property="og:description" content="Сізді Мақсут пен Айнараның үйлену тойына шақырамыз!" />
+<meta name="twitter:image" content="https://aibol34.github.io/site_ainara/img/preview.jpg" />
+<meta property="og:url" content="https://aibol34.github.io/site_ainara/" />
+<meta property="og:type" content="website" />
+
+
+
+
+
+  <title> Мақсут пен Айнараның үйлену тойы</title>
+  <!-- Playfair Display (основной), Caveat (каллиграфия) -->
+  <link
+          href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap"
+          rel="stylesheet"
+  />
+  <link
+          href="https://fonts.googleapis.com/css2?family=Caveat&display=swap"
+          rel="stylesheet"
+  />
+  <link
+          href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+          rel="stylesheet"
+  />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+
+  /* Заголовок */
+  .countdown-content h1 {
+    color: #742820;
+    font-size: 1.6rem; /* чуть меньше */
+    margin-bottom: 12px; /* убираем лишний отступ */
+  }
+
+  /* Контейнер цифр */
+  .countdown {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* поменьше расстояние */
+    color: #742820;
+  }
+
+  /* Цифры */
+  .countdown .unit {
+    text-align: center;
+    font-size: 1.6rem; /* уменьшили с 2.2rem */
+    line-height: 1;
+  }
+
+  /* Подписи */
+  .countdown .unit::after {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.75rem; /* уменьшили с 0.9rem */
+    margin-top: 2px;
+    color: #742820;
+  }
+
+  /* Popup */
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(115, 62, 49, 0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+  .popup-content {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 20px;
+    color: #742820;
+    box-shadow: 0 4px 20px rgba(115, 62, 49, 0.15);
+  }
+  .popup-content button {
+    margin-top: 20px;
+    background: #a9897b;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .popup-content button:hover {
+    background: #7d5b4b;
+  }
+
+  /* Основные заголовки и подчеркнутый текст */
+  h1,
+  .outlined-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+
+    line-height: 1.4;
+    color: #742820;
+    margin: 0.5em 0;
+  }
+
+  /* Кнопки, подписи, UI */
+  /*button, .radio-group label, .mini-calendar-header, .info-text {*/
+  /*  font-family: 'Rubik', sans-serif;*/
+  /*}*/
+
+  /* Имена молодожёнов */
+  .names {
+    font-family: 'Great Vibes', cursive;
+  }
+
+  /* Динамический гость и приглашение */
+  #guest-name,
+  .invitation-text {
+    font-family: 'Caveat', cursive;
+  }
+
+  /* Второстепенные акценты */
+  .names-lobster {
+    font-family: 'Lobster', cursive;
+  }
+  html,
+  body {
+    color: #111;
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', serif;
+    background: #fff;
+    font-size: 33px;
+    color: #742820;
+    cursor: pointer;
+    min-height: 100%;
+  }
+
+  /* Обложка */
+  .hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero img.bg-photo {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    filter: brightness(0.98);
+  }
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.33) 8%,
+            rgba(255, 255, 255, 0.97) 88%
+    );
+    z-index: 2;
+  }
+  .music-button {
+    position: absolute;
+    bottom: 62px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 72px;
+    height: 72px;
+    background: rgba(255, 255, 255, 0.93);
+    border-radius: 50%;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 33px;
+    color: #742820;
+    cursor: pointer;
+    z-index: 10;
+    border: none;
+  }
+  .music-button:hover {
+    background: #efe1fa;
+  }
+
+  /* Основная часть */
+  .main-bg {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .main-bg::before {
+    content: '';
+    position: absolute;  /* ← только внутри .main-bg */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('Adilet1.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.25;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+
+  .content-section {
+    position: relative;
+    z-index: 2;
+    /*background: url('Kuz-Uzatu-2.JPG') bottom center/contain no-repeat;*/
+    background-position: calc(50%) calc(100% - 10px);
+    max-width: 650px;
+    margin: 0 auto;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+    padding: 62px 32px 62px 32px;
+    margin-bottom: 56px;
+    text-align: center;
+    display: flex;
+    /*background: ;*/
+    flex-direction: column;
+    /* gap: 20px; */
+  }
+
+  /* Общие стили для левого и правого орнаментов */
+  .content-section::before,
+  .content-section::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80px; /* ширина орнамента */
+    height: 160px; /* высота орнамента */
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: 0.3; /* чтобы не мешать тексту */
+    z-index: 1; /* позади самой карточки */
+  }
+
+  /* Левый орнамент */
+  .content-section::before {
+    left: -40px; /* наполовину заступает за границу карточки */
+    /*background-image: url('ornament_left_colored.png');*/
+  }
+  /* Caveat акцент */
+  .caveat {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400 !important;
+    color: #742820 !important;
+    letter-spacing: 0.5px;
+  }
+  .caveat.host {
+    font-size: 1.5em;
+    margin-top: 7px;
+  }
+  .caveat.date {
+    font-size: 1.4em;
+    margin: 8px 0 4px 0;
+  }
+  .caveat.place {
+    font-size: 1.2em;
+  }
+  .caveat.section-title {
+    font-size: 1.15em;
+    margin: 18px 0 7px 0;
+  }
+
+  .noto-italic {
+    font-family: 'Playfair Display', serif;
+    font-style: italic !important;
+    font-weight: 300 !important;
+    color: #742820 !important;
+    font-size: 0.8em; /* адаптируй размер под нужный блок */
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    display: block;
+    opacity: 0.97;
+    margin: 8px 0 14px 0;
+  }
+
+  .noto-italic-white{
+        font-family: 'Playfair Display', serif;
+    font-style: italic !important;
+    font-weight: 300 !important;
+    color: #ffffff !important;
+    font-size: 0.8em; /* адаптируй размер под нужный блок */
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    display: block;
+    opacity: 0.97;
+    margin: 8px 0 14px 0;
+  }
+  .noto-italic.place {
+    font-size: 2em;
+    letter-spacing: 0.06em;
+    margin: 0 0 8px 0;
+  }
+  .noto-italic.date {
+    font-size: 0.8em;
+    margin: 10px 0 18px 0;
+  }
+  .noto-italic.thin {
+    font-size: 1.25em;
+    opacity: 0.93;
+    margin: 6px 0 6px 0;
+  }
+  .noto-italic.section-title {
+    font-size: 2em; /* можно подправить под нужный размер */
+    margin: 18px 0 7px 0;
+  }
+  .noto-italic.section {
+    font-size: 26px !important;
+  }
+  .noto-italic.title {
+    font-size: 34px !important;
+  }
+  .noto-italic.address {
+    font-size: 25px !important;
+  }
+  .noto-italic.schedule {
+    font-size: 19px !important;
+  }
+  .noto-italic.date,
+  .noto-italic.time {
+    font-size: 28px !important;
+  }
+  .noto-italic.small {
+    font-size: 25px !important;
+  }
+
+  .hero-title {
+    font-family: 'Caveat', 'cursive';
+    position: absolute;
+    top: 630px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    color: #742820;
+    white-space: nowrap; /* запрет переноса */
+    z-index: 3;
+  }
+
+  .invitation-title {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 2.2em;
+    color: #722922;
+    font-family: 'Noto Serif', serif;
+    z-index: 3; /* важное значение, чтобы быть выше .hero-overlay */
+  }
+
+  .invitation-date {
+    position: relative;
+    font-size: 2em;
+    font-family: 'Noto Serif', serif;
+    color: #722922;
+    text-align: center;
+    z-index: 3;
+    margin-top: 400px; /* было 20px, стало чуть ниже */
+  }
+
+  .name-pair {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 4vw;
+    z-index: 3;
+  }
+
+  .name-pair span {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(1.5em, 5vw, 2.5em);
+    color: #722922;
+  }
+
+  .adilet {
+    transform: translateY(-5px);
+  }
+
+  .merey {
+    transform: translateY(35px);
+  }
+
+  /* Мини-календарь */
+  .mini-calendar-container {
+    max-width: 340px;
+    margin: 0 auto 18px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .mini-calendar-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #742820;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  .mini-calendar {
+    font-size: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    background: transparent;
+  }
+  .mini-calendar th,
+  .mini-calendar td {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    color: #742820;
+    padding: 3px 8px;
+    text-align: center;
+    border: none;
+    font-size: 1em;
+    background: transparent;
+    position: relative;
+    line-height: 1.05;
+  }
+  .mini-calendar .marked-day {
+    font-weight: 700;
+    position: relative;
+    z-index: 2;
+  }
+  .mini-calendar .marked-day::after {
+    content: '♡';
+    font-family: 'Playfair Display', serif;
+    font-size: 3em;
+    color: #742820;
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Outlined-text — для второстепенных блоков */
+  .outlined-text {
+    /*font-family: 'Playfair Display', serif !important;*/
+    /*font-weight: 700 !important;*/
+    /*color: #b49a89 !important;*/
+    /*-webkit-text-stroke: 0.6px #998678 !important;*/
+    /*text-stroke: 0.6px #998678 !important;*/
+    /*letter-spacing: 0.2px;*/
+  }
+  .outlined-text.section {
+    font-size: 26px !important;
+  }
+  .outlined-text.title {
+    font-size: 34px !important;
+  }
+  .outlined-text.address {
+    font-size: 25px !important;
+  }
+  .outlined-text.schedule {
+    font-size: 19px !important;
+  }
+  .outlined-text.date,
+  .outlined-text.time {
+    font-size: 28px !important;
+  }
+  .outlined-text.small {
+    font-size: 25px !important;
+  }
+
+  @media (max-width: 700px) {
+    .hero-title {
+      top: 60vh;
+      font-size: 60px;
+    }
+    body {
+      background-size: auto 60%;
+    }
+    .content-section {
+      max-width: 99vw;
+      padding: 9vw 2vw 8vw 2vw;
+      margin-bottom: 0;
+    }
+    .content-section .address {
+      text-align: center;
+      margin: 0 auto 18px;
+      display: block;
+    }
+    .outlined-text.title {
+      font-size: 34px !important;
+    }
+    .outlined-text.section {
+      font-size: 27px !important;
+    }
+    .outlined-text.address {
+      font-size: 25px !important;
+    }
+    .outlined-text.schedule {
+      font-size: 22px !important;
+    }
+    .outlined-text.date {
+      font-size: 21px !important;
+    }
+    .mini-calendar-header {
+      font-size: 16px;
+    }
+    .mini-calendar {
+      font-size: 16px;
+    }
+  }
+  /* Кнопки и формы — стиль как на втором скрине */
+  .rsvp-form {
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 4px 18px rgba(115, 62, 49, 0.05);
+    max-width: 510px;
+    margin: 24px auto;
+    padding: 24px 16px; /* tightened up */
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* a touch less vertical gap */
+    align-items: stretch;
+  }
+
+  .rsvp-form input[type='text'] {
+    width: 100%;
+    padding: 14px 16px; /* more balanced padding */
+    font-size: 0.7em; /* matches body copy */
+    border-radius: 20px;
+    border: 2px solid #c6beb9; /* slightly thinner border */
+    outline: none;
+    font-family: 'Playfair Display', serif;
+    color: #432017;
+    background: #fff;
+    box-sizing: border-box;
+    transition: border-color 0.22s;
+    margin-bottom: 0;
+  }
+
+  .rsvp-form input[type='text']:focus {
+    color: #742820;
+    background: #fcf9f8;
+  }
+  .radio-group .divider {
+    border: none; /* выключаем стандартные рамки */
+    border-top: 1px solid #fff; /* делаем тонкую белую линию */
+    margin: 8px 0; /* отступы сверху/снизу */
+  }
+
+  .info-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.6em; /* a bit smaller so it doesn’t compete */
+    color: #742820;
+    text-align: center;
+    margin: 6px 0 12px;
+    letter-spacing: 0.01em;
+  }
+
+  .radio-group {
+    margin: 0 0 12px;
+  }
+
+  .radio-group label {
+    font-size: 0.6em; /* match the rest of the form text */
+    font-family: 'Montserrat', sans-serif;
+    color: #742820;
+    cursor: pointer;
+  }
+
+  .radio-group div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  hr {
+    color: white;
+  }
+  .radio-group input[type='radio'] {
+    accent-color: #742820;
+    width: 18px; /* slightly smaller circles */
+    height: 18px;
+    margin-right: 8px; /* tighten up the gap */
+  }
+
+  .rsvp-form button[type='submit'] {
+    background-color: #a9897b;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.4em; /* more in-line with other headings */
+    border: none;
+    border-radius: 22px;
+    padding: 12px 0; /* a little less vertical height */
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 10px rgba(115, 62, 49, 0.09);
+    transition: background 0.18s;
+    width: 100%;
+  }
+
+  .rsvp-form button[type='submit']:hover {
+    background: #7d5b4b;
+  }
+
+  /* Mobile tweaks */
+  @media (max-width: 600px) {
+    .hero-title {
+      top: 64vh;
+      /*margin-left: -8px;*/
+      text-align: center;
+      font-size: 55px;
+    }
+    .rsvp-form {
+      padding: 20px 12px;
+      gap: 12px;
+    }
+    .rsvp-form input[type='text'] {
+      padding: 12px 14px;
+      font-size: 0.95em;
+    }
+    .radio-group label {
+      font-size: 0.6em;
+    }
+    .rsvp-form button[type='submit'] {
+      font-size: 1.2em;
+      padding: 10px 0;
+    }
+
+    .radio-group .divider {
+      border: none; /* выключаем стандартные рамки */
+      border-top: 1px solid #fff; /* делаем тонкую белую линию */
+      margin: 8px 0; /* отступы сверху/снизу */
+    }
+  }
+</style>
+<!-- 1. Обложка -->
+
+<body style="font-family: 'Noto Sans', sans-serif; margin: 0; padding: 0">
+<div class="hero">
+  <div class="invitation-title">Тойға шақыру</div>
+  <div class="name-pair">
+    <span class="noto-italic adilet">Мақсут</span>
+    <span class="noto-italic merey">Айнара</span>
+  </div>
+  <div class="invitation-date">04.10.2025</div>
+  <img src="Adilet2.jpg" alt="" class="bg-photo" />
+  <div class="hero-overlay"></div>
+  <button class="music-button" id="playBtn" title="Музыка">
+    <span id="playIcon">&#9654;</span>
+  </button>
+  <audio id="music" src="music.mp3" preload="auto" loop></audio>
+</div>
+
+<div class="fixed-background"></div>
+<div class="main-bg">
+  <div class="content-section">
+    <div class="noto-italic" style="margin-bottom: 10px; font-size: 1.5em;">
+      Құрметті
+    </div>
+
+    <div
+            class="noto-italic"
+            id="invitation-text"
+            style="margin-top: 0px"
+    >
+      ағайын-туыс,
+      бауырлар,<br />
+      құда-жекжат, нағашы-жиендер,<br />
+      дос-жаран!<br />
+
+    </div>
+
+
+    <div class="noto-italic" style="margin: 10px 0 0 0px">
+      Сіздерді балаларымыз
+    </div>
+
+    <div class="noto-italic" style="font-size: 1.5em; margin: 10px 0;">
+      Мақсут пен Айнараның
+    </div>
+
+    <div class="noto-italic" style="margin-top: 0px">
+      үйлену тойына арналған салтанатты ақ дастарханымыздың<br />
+      қадірлі қонағы болуға шақырамыз!
+    </div>
+
+    <div class="noto-italic" style="margin: 50px 0 5px 0">
+      Той иелері:
+    </div>
+    <div class="noto-italic" style="font-size: 1.1em; margin: 0">
+      Максим - Салуа
+    </div>
+
+    <div class="mini-calendar-container" style="margin-top: 70px">
+     <div class="mini-calendar-header">Қазан 2024</div>
+<table class="mini-calendar">
+  <thead>
+    <tr>
+      <th>ДС</th>
+      <th>СС</th>
+      <th>СР</th>
+      <th>БС</th>
+      <th>ЖМ</th>
+      <th>СБ</th>
+      <th>ЖС</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td class="marked-day">4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>10</td>
+      <td>11</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>14</td>
+      <td>15</td>
+      <td>16</td>
+      <td>17</td>
+      <td>18</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>21</td>
+      <td>22</td>
+      <td>23</td>
+      <td>24</td>
+      <td>25</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <td>27</td>
+      <td>28</td>
+      <td>29</td>
+      <td>30</td>
+      <td>31</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+    <div
+            class="noto-italic schedule"
+            style="
+            background: #f6f3fa;
+            padding: 20px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 18px;
+          "
+    >
+      Фуршет 19:00<br />
+      Құдаларды қарсы алу 19:30
+    </div>
+    
+<div class="countdown-content" style="padding: 20px">
+  <h1 class="noto-italic section-title">Тойға дейін:</h1><br>
+  <div class="countdown">
+    <div class="unit" data-label="КҮН">
+      <span id="days">0</span>
+    </div>
+    <div class="unit" data-label="САҒАТ">
+      <span id="hours">0</span>
+    </div>
+    <div class="unit" data-label="МИНУТ">
+      <span id="minutes">0</span>
+    </div>
+    <div class="unit" data-label="СЕКУНД">
+      <span id="seconds">0</span>
+    </div>
+  </div>
+</div>
+
+    <div class="noto-italic section" style="margin-top: 60px">Мекен-жайымыз:</div>
+
+    <div class="noto-italic address">
+      Орал қаласы,<br />
+      Алия Молдагулова, 9/1<br />
+      <span class="noto-italic place">“Tumar”</span> мейрамханасы
+    </div>
+
+    <div style="margin: 18px 0">
+      <a
+              href="https://go.2gis.com/QaazK"
+              target="_blank"
+              style="text-decoration: none; color: #b29a90"
+      >
+        <img
+                src="https://play-lh.googleusercontent.com/55huczUZ05ruaVynURUNqzgTu0qXLF-SPQZKtE9KA6_BavI-g0NgXz1NR98n5xX33HwD"
+                alt="2GIS карта"
+                width="60"
+                style="vertical-align: middle; border-radius: 10px"
+        />
+        <span class="outlined-text address" style="vertical-align: middle"
+        >2GIS</span
+        >
+      </a>
+    </div>
+
+
+<div class="noto-italic section" style="margin: 38px 0 18px">
+  ТОЙҒА КЕЛЕТІНІҢІЗДІ РАСТАУЫҢЫЗДЫ СҰРАЙМЫЗ
+</div>
+<form class="rsvp-form" id="rsvp-form">
+<input type="text" id="name" name="name" placeholder="Есіміңіз" required />
+
+  <div class="noto-italic" style="text-align: left">
+    Жұбыңызбен келсеңіз, жұбыңыздың есімін де жазыңыз!
+  </div>
+  <div class="radio-group">
+    <div>
+      <label class="noto-italic">
+        <input type="radio" name="answer" value="Келемін" required />
+        Келемін
+      </label>
+    </div>
+
+    <hr class="divider" />
+
+    <div>
+      <label class="noto-italic">
+        <input type="radio" name="answer" value="Жұбыммен келемін" />
+        Жұбыммен келемін
+      </label>
+    </div>
+
+    <hr class="divider" />
+
+    <div>
+      <label class="noto-italic">
+        <input type="radio" name="answer" value="Келе алмаймын" />
+        Келе алмаймын
+      </label>
+    </div>
+  </div>
+
+  <button type="submit" class="noto-italic">Жіберу</button>
+</form>
+<div class="noto-italic section" style="
+  text-align: center;
+  font-size: 28px;
+  color: #742820;
+  margin: 60px 0 20px;
+">
+  КЕЛІҢІЗДЕР, ТОЙЫМЫҢЫЗДЫҢ<br />
+  ҚАДІРЛІ ҚОНАҒЫ БОЛЫҢЫЗДАР!
+</div>
+
+<div id="loader" style="display: none"></div>
+<div class="popup" id="popup" style="display: none">
+  <div class="popup-content">
+    ✅ Жауабыңыз сәтті жіберілді! Рақмет!
+    <br /><br />
+    <button onclick="closePopup()">Жабу</button>
+  </div>
+</div>
+
+<br>
+<div class="insta-banner">
+  <a href="https://www.instagram.com/shakyrtu_studio_online/" target="_blank">
+    <span>Закажите</span>
+    <img src="PikPng.com_instagram-logo-png_1124492.png" alt="Instagram">
+    <span>у нас!</span>
+  </a>
+</div>
+
+<style>
+.insta-banner {
+  position: fixed;     /* фиксируем блок */
+  bottom: 0;           /* снизу */
+  left: 0;             /* слева */
+  width: 100%;         /* по ширине окна */
+  background-color: #3e1f0d;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  z-index: 9999;       /* чтобы поверх всего */
+}
+
+  .insta-banner a {
+    color: white;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .insta-banner img {
+    height: 20px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
+
+  @media (max-width: 600px) {
+    .insta-banner a {
+      font-size: 14px;
+    }
+
+    .insta-banner img {
+      height: 18px;
+    }
+  }
+</style>
+
+
+
+<script>
+  function startCountdown() {
+    const targetDate = new Date('October 4, 2025 19:00:00').getTime();
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const timeLeft = targetDate - now;
+
+      if (timeLeft <= 0) {
+        document.getElementById('days').textContent = '0';
+        document.getElementById('hours').textContent = '0';
+        document.getElementById('minutes').textContent = '0';
+        document.getElementById('seconds').textContent = '0';
+        return;
+      }
+
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
+    }, 1000);
+  }
+
+  startCountdown();
+</script>
+
+<script>
+  // Музыка на обложке
+  document.addEventListener('DOMContentLoaded', function () {
+    const playBtn = document.getElementById('playBtn');
+    const playIcon = document.getElementById('playIcon');
+    const music = document.getElementById('music');
+    let isPlaying = false;
+    playBtn.addEventListener('click', () => {
+      if (!isPlaying) {
+        music.play().then(() => {
+          playIcon.textContent = '❚❚';
+          isPlaying = true;
+        });
+      } else {
+        music.pause();
+        playIcon.textContent = '▶';
+        isPlaying = false;
+      }
+    });
+    music.addEventListener('ended', () => {
+      playIcon.textContent = '▶';
+      isPlaying = false;
+    });
+  });
+</script>
+
+  <script>
+    const form = document.getElementById('rsvp-form');
+    const popup = document.getElementById('popup');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const data = new FormData(form);
+      const params = new URLSearchParams();
+
+      for (const pair of data) {
+        params.append(pair[0], pair[1]);
+      }
+
+      fetch('https://script.google.com/macros/s/AKfycbwC-EZkiwNFv1iD3sIassZ6yKNDEmGPrORz76ljr6zDtgOoEGj5GINJmegsoz2BJehGzw/exec', {
+        method: 'POST',
+        body: params
+      })
+      .then(res => res.json())
+      .then(response => {
+        if (response.result === 'success') {
+          popup.style.display = 'block';
+          form.reset();
+        } else {
+          alert('Ошибка отправки: ' + response.message);
+        }
+      })
+      .catch(err => {
+        alert('Серверлік қате, кейінірек қайталап көріңіз');
+        console.error(err);
+      });
+    });
+
+    function closePopup() {
+      popup.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
